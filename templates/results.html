@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Smart Recommendations</title>
+  </head>
+  <body>
+    <h2>Top 5 Recommended Colleges for You:</h2>
+    <ul>
+      {% for idx, college in colleges %}
+      <li>
+        <b>{{ college.college_name }}</b> ({{ college.location }})<br />
+        Specialization: {{ college.specialization }} ({{ college.course }})<br />
+        Fee: ₹{{ college.fee }} | Exam: {{ college.relevant_exam }} (Min Marks:
+        {{ college.min_marks }})<br />
+        Type: {{ college.type }} | Accreditation: {{ college.accreditation }} |
+        Scholarship: {{ college.scholarship }}<br />
+        Facilities: {{ college.facilities }}<br />
+        <b>Match Score:</b> {{ college.relevancy }}%<br />
+        <a href="{{ college.link }}">Learn More</a>
+      </li>
+      <hr />
+      {% endfor %}
+    </ul>
+    <a href="/">Start a new conversation</a>
+  </body>
+</html>

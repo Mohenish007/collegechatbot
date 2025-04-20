@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CollegeBot</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+<button id="backToTop" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    AOS.init({
+      duration: 1000,
+      offset: 120,
+      once: true
+    });
+  });
+</script>
+<script>
+ // Back to Top Logic
+  const backToTop = document.getElementById("backToTop");
+  window.onscroll = function () {
+    backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+  };
+  backToTop.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+</script>
+<body>
+  <nav class="navbar">
+    <div class="nav-wrapper">
+      <ul class="nav-menu">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <i id="theme-icon" class="fas fa-moon theme-toggle-btn"></i>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="chat-container">
+    <header class="chat-header">
+      <div class="logo">
+        <img src= "{{ url_for('static', filename='Hehe.webp') }}" alt="Bot Logo" class="bot-logo" />
+        <span>CollegeChatbot</span>
+      </div>
+      <p>Your smart assistant for college suggestions 🎓</p>
+    </header>
+
+    <div class="chat-box" id="chat-box"></div>
+
+    <form id="chat-form">
+      <button type="button" id="emoji-btn"><i class="far fa-smile"></i></button>
+      <input type="text" id="user-input" placeholder="Ask me anything..." autocomplete="off" required />
+      <button type="button" id="mic-btn"><i class="fas fa-microphone"></i></button>
+      <button type="submit"><i class="fas fa-paper-plane"></i></button>
+    </form>
+  </div>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <h1>College Career Companion</h1>
+      <p>Explore your academic future with smart, AI-driven guidance.</p>
+      <img src= "{{ url_for('static', filename='Hehe.webp') }}" alt="Project" class="hero-img">
+    </section>
+  
+    
+    <!-- Team Section -->
+    <section class="team-section" id="team">
+    <h2>Meet Our Awesome Team</h2>
+    <div class="team-grid">
+
+    <div class="member">
+      <img src="{{ url_for('static', filename='mohenish.jpg') }}" alt="Member 1" />
+      <h3>Mohenish Mishra</h3>
+      <p>Lead Developer</p>
+    </div>
+
+    <div class="member">
+      <img src="{{ url_for('static', filename='ritwicka.jpg') }}" alt="Member 2" />
+      <h3>Ritwicka Majumdar</h3>
+      <p>UI/UX Designer</p>
+    </div>
+
+    <div class="member">
+      <img src="{{ url_for('static', filename='shahin.jpg') }}" alt="Member 3" />
+      <h3>Shahin Chakraborty</h3>
+      <p>Backend Engineer</p>
+    </div>
+
+    <div class="member">
+      <img src="{{ url_for('static', filename='pramithi.jpg') }}" alt="Member 4" />
+      <h3>Pramithi Pal</h3>
+      <p>Backend Engineer</p>
+    </div>
+
+    <div class="member">
+      <img src="{{ url_for('static', filename='payel.jpg') }}" alt="Member 5" />
+      <h3>Payel Chakraborty</h3>
+      <p>Backend Engineer</p>
+    </div>
+
+  </div>
+</section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+      <h2>Key Features</h2>
+      <div class="features-stack">
+        <div class="feature">
+          <i class="fas fa-brain"></i>
+          <h3>AI-Powered Guidance</h3>
+          <p>Our chatbot suggests colleges based on your interests using smart NLP.</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-microphone"></i>
+          <h3>Voice Interaction</h3>
+          <p>Ask questions via voice and get instant responses, hands-free!</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-graduation-cap"></i>
+          <h3>Scholarship Insights</h3>
+          <p>Find scholarship opportunities tailored to your background.</p>
+        </div>
+      </div>
+    </section>
+    
+
+<!-- Contact Section -->
+<section class="contact-section" id="contact">
+  <h2>Get in Touch</h2>
+  <p>Want to know more about our project? Drop us a line!</p>
+  <div class="contact-details">
+    <p><i class="fas fa-envelope"></i> collegebot.team@gmail.com</p>
+    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+    <p><i class="fab fa-github"></i> <a href="https://github.com/your-repo" target="_blank">GitHub Repo</a></p>
+  </div>
+</section>
+
+<!-- Emoji Picker -->
+  <div id="emoji-picker" class="emoji-picker hidden">
+    <input type="text" id="emoji-search" placeholder="Search emojis..." />
+    <div class="emoji-tabs">
+      <button class="tab-btn active" data-category="faces">😊</button>
+      <button class="tab-btn" data-category="gestures">🤝</button>
+      <button class="tab-btn" data-category="objects">📦</button>
+    </div>
+    <div class="emoji-grid-container">
+      <div class="emoji-grid faces"></div>
+      <div class="emoji-grid gestures hidden"></div>
+      <div class="emoji-grid objects hidden"></div>
+    </div>
+  </div>
+
+  <script>
+    const micBtn = document.getElementById("mic-btn");
+  
+    micBtn.addEventListener("click", () => {
+      micBtn.classList.add("mic-listening");
+      setTimeout(() => {
+        micBtn.classList.remove("mic-listening");
+      }, 5000);
+    });
+  </script>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
